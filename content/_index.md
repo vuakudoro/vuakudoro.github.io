@@ -1,5 +1,8 @@
 ---
 title: "Victor Akudoro"
+type: landing
+outputs:
+  - HTML
 ---
 
 # Victor Akudoro
