@@ -1,3 +1,18 @@
+outputs:
+  home:
+    - HTML
+  page:
+    - HTML
+  section:
+    - HTML
+  taxonomy:
+    - HTML
+  term:
+    - HTML
+
+disableKinds:
+  - RSS
+
 # --------------------------------------------------
 # HugoBlox / Hugo build configuration
 # --------------------------------------------------
