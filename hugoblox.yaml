@@ -31,6 +31,11 @@ baseURL: "https://vuakudoro.github.io/"
 title: "Victor Akudoro"
 languageCode: "en-us"
 
+disableKinds:
+  - RSS
+  - taxonomy
+  - term
+
 # --------------------------------------------------
 # Hugo settings
 # --------------------------------------------------
