@@ -1,30 +1,48 @@
----
-title: "Victor Akudoro"
-type: landing
-sections:
-  - block: about.biography
-  - block: experience
-  - block: skills
-  - block: publications
-  - block: contact
----
+name: Deploy Hugo site to GitHub Pages
 
-# Victor Akudoro
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
-**PhD Researcher | Cyclostratigraphy | Sedimentary Geology | Earth Surface Processes**
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
-Welcome to my academic website. This site presents my research, publications, figures, and scholarly activities.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
-## Research Interests
-- Cyclostratigraphy and spectral time-series analysis  
-- Tidal rhythmites and microbial mat interactions  
-- Sedimentary geology and Earth surface processes  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-## Publications
-A full list of publications will be added here.
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.152.2"
+          extended: true
 
-## Figures & Media
-Research figures, datasets, and visualizations will be hosted here.
+      - name: Build
+        run: hugo --minify
 
-## Contact
-Email: *to be added*
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
