@@ -27,7 +27,7 @@ build:
 # Site identity (CRITICAL)
 # --------------------------------------------------
 
-baseURL: "https://vuakudoro.github.io/akudoro.github.io/"
+baseURL: "https://vuakudoro.github.io/"
 title: "Victor Akudoro"
 languageCode: "en-us"
 
